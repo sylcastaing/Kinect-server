@@ -6,6 +6,11 @@
 #include <pistache/router.h>
 #include <pistache/http_headers.h>
 
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+
+#include "../model/Kinect.h"
 
 namespace kinectserver {
   class KinectApi {
@@ -20,11 +25,13 @@ namespace kinectserver {
       void setupRoutes();
 
       void getTilt(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);
-      void changeTilt(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);
+      void setTilt(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);
       void defaultReponse(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);
 
       std::shared_ptr<Pistache::Http::Endpoint> httpEndpoint;
       Pistache::Rest::Router router;
+
+      Kinect kinect;
   };
 }
 
