@@ -4,7 +4,9 @@ using namespace cv;
 using namespace std;
 
 namespace kinectserver {
-  Kinect::Kinect() {};
+  Kinect::Kinect() {
+    freenect_sync_set_led(LED_OFF, 0);
+  };
 
   freenect_raw_tilt_state* Kinect::getTilt() {
     freenect_sync_get_tilt_state(&state, 0);
