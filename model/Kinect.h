@@ -15,7 +15,6 @@
 #define FREENECTOPENCV_RGB_HEIGHT 480
 
 #define FILE_NAME "kinect.png"
-#define FREQUENCY 300
 
 using namespace cv;
 using namespace std;
@@ -26,11 +25,16 @@ namespace kinectserver {
       Kinect();
       virtual ~Kinect() {};
 
+      string getImage();
       freenect_raw_tilt_state* getTilt();
       void setTilt(int angle);
       void startVideo();
     
     private:
+      char *data;
+      unsigned int timestamp;
+      Mat rgbimg;
+      Mat tempimg;
       freenect_raw_tilt_state *state = 0;
   };
 }

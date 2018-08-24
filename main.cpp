@@ -21,21 +21,11 @@ void my_handler(int signal)
 }
 
 int main() {
-  thread t1([]() {
-    Pistache::Address addr(Pistache::Ipv4::any(), Pistache::Port(8080));
-    KinectApi server(addr);
-    server.init(2);
-    server.start();
-    server.shutdown();
-  });
-
-  thread t2([]() {
-    Kinect kinect;
-    kinect.startVideo();
-  });
-
-  t1.join();
-  t2.join();
+  Pistache::Address addr(Pistache::Ipv4::any(), Pistache::Port(8080));
+  KinectApi server(addr);
+  server.init(2);
+  server.start();
+  server.shutdown();
 
   return 0;
 }

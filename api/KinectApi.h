@@ -24,7 +24,7 @@ namespace kinectserver {
     private:
       void setupRoutes();
 
-      void getCamera(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);
+      void getImage(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);
       void getTilt(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);
       void setTilt(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);
       void defaultReponse(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response);

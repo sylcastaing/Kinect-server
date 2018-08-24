@@ -27,7 +27,7 @@ namespace kinectserver {
   void KinectApi::setupRoutes() {
     using namespace Pistache::Rest;
 
-    Routes::Get(router, "/camera", Routes::bind(&KinectApi::getCamera, this));
+    Routes::Get(router, "/camera", Routes::bind(&KinectApi::getImage, this));
     Routes::Get(router, "/tilt", Routes::bind(&KinectApi::getTilt, this));
     Routes::Post(router, "/tilt", Routes::bind(&KinectApi::setTilt, this));
 
@@ -35,8 +35,8 @@ namespace kinectserver {
     router.addCustomHandler(Routes::bind(&KinectApi::defaultReponse, this));
   }
 
-  void KinectApi::getCamera(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response) {
-    Pistache::Http::serveFile(response, "kinect.png");
+  void KinectApi::getImage(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response) {
+    Pistache::Http::serveFile(response, kinect.getImage().c_str());
   }
 
   void KinectApi::getTilt(const Pistache::Rest::Request &request, Pistache::Http::ResponseWriter response) {
