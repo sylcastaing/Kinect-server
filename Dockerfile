@@ -1,11 +1,9 @@
 FROM resin/rpi-raspbian
 
-RUN apt-get update \
-  && apt-get install -y git cmake build-essential libusb-1.0-0-dev libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
-  && rm -rf /var/lib/apt/lists/*
+RUN [ "cross-build-start" ]
 
 RUN apt-get update \
-  && apt-get install git cmake build-essential libusb-1.0-0-dev \
+  && apt-get install -y git cmake build-essential libusb-1.0-0-dev libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
   && rm -rf /var/lib/apt/lists/*
 
 RUN cd /usr/src/ && mkdir kinect
@@ -30,5 +28,7 @@ RUN cd /usr/src/kinect \
   && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release .. \
   && make \
   && make install
+
+RUN [ "cross-build-end" ]
 
 CMD ["tail", "-f", "/dev/null"]
