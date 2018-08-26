@@ -6,9 +6,9 @@
 #include <pistache/router.h>
 #include <pistache/http_headers.h>
 
-#include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/stringbuffer.h"
+#include "../lib/rapidjson/document.h"
+#include "../lib/rapidjson/writer.h"
+#include "../lib/rapidjson/stringbuffer.h"
 
 #include "../model/Kinect.h"
 
